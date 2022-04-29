@@ -3,6 +3,8 @@ package com.rakuten;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -60,6 +62,18 @@ public class UserService {
 
 	public void removeUserFromId(int id) {
 			repository.deleteById(id);
+	}
+
+	public void clearDatabase() {
+		repository.deleteAll();
+		
+	}
+
+	public void saveUsers(@Valid List<User> users) {
+		users.forEach(single_user_in_request -> {
+			repository.save(single_user_in_request);
+		});
+		
 	}
 
 }

@@ -38,6 +38,12 @@ public class UserController {
 		return service.save(user);
 	}
 	
+	@PostMapping("/saveMultipleUsersAtOnce")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	void saveUsers(@Valid @RequestBody List<User> users) {
+		service.saveUsers(users);
+	}
+	
 	@GetMapping
 	List<User> getUsers() {
 		return service.getAllUsers();
@@ -56,6 +62,11 @@ public class UserController {
 	@DeleteMapping("/delete/{id}")
 	void deleteUserFromId(@PathVariable int id) {
 		service.removeUserFromId(id);
+	}
+	
+	@DeleteMapping("/deleteAll*")
+	void deleteAllUsers() {
+		service.clearDatabase();
 	}
 	
 	@ExceptionHandler(EmptyResultDataAccessException.class)
