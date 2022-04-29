@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,11 @@ public class UserController {
 	@GetMapping("age/{age}")
 	List<User> getUserFromAge(@PathVariable int age) {
 		return service.getUserByAge(age);
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	void deleteUserFromId(@PathVariable int id) {
+		service.removeUserFromId(id);
 	}
 	
 	//We have added messages. now we shouldn't show the message as hackers can leverage the message info,so we will hide those using this below method.

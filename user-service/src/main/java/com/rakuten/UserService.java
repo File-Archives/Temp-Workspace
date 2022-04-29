@@ -56,4 +56,9 @@ public class UserService {
 		 return filteredUsers;
 	}
 
+	public void removeUserFromId(int id) {
+		repository.deleteById(id);
+		
+	}
+
 }
