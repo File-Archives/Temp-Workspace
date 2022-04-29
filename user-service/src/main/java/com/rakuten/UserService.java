@@ -59,7 +59,7 @@ public class UserService {
 	}
 
 	public void removeUserFromId(int id) {
-			repository.deleteById(id);	
+			repository.deleteById(id);
 	}
 
 }
