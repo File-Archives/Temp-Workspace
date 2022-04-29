@@ -58,6 +58,12 @@ public class UserController {
 		service.removeUserFromId(id);
 	}
 	
+	@ExceptionHandler(EmptyResultDataAccessException.class)
+	@ResponseStatus(code = HttpStatus.NOT_FOUND)
+	public void handleEmptyResultDataAccessException() {
+		
+	}
+	
 	//We have added messages. now we shouldn't show the message as hackers can leverage the message info,so we will hide those using this below method.
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public Map<String, String> handleValidationException(MethodArgumentNotValidException ex) {
